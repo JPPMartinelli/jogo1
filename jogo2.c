@@ -391,7 +391,49 @@ int capitulo1(PERS *personagem){
             }
             }
 }
-
+int capitulo2(PERS *personagem)
+{
+    printf("chegou");
+    FILE *f = fopen("capitulo2.txt", "r");
+    char texto[1001];
+    char escolha = 'Z';
+    while (fgets(texto, sizeof(texto), f) != NULL) {
+        int tam = strlen(texto);
+        if (texto[0] == '+') {
+            scanf("%c", &escolha);
+        }
+        if (escolha == 'a' || escolha == 'A') {
+            if (texto[0] == '[' && texto[1] == 'A' && texto[2] == ']') {
+                printarFiltrado(texto, personagem->nome);
+                printf("\n");
+            }
+        } else if (escolha == 'b' || escolha == 'B') {
+            if (texto[0] == '[' && texto[1] == 'B' && texto[2] == ']') {
+                printarFiltrado(texto, personagem->nome);
+                printf("\n");
+            }
+        } else if (escolha == 'c' || escolha == 'C') {
+            if (texto[0] == '[' && texto[1] == 'C' && texto[2] == ']') {
+                printarFiltrado(texto, personagem->nome);
+                printf("\n");
+            }
+        } else {
+            printf("%s\n", texto);
+        }
+    }
+    printf("\n");
+    if (escolha == 'a' || escolha == 'A') {
+        personagem->magia += 10;
+        printf("Voce recebeu 10 pontos de magia");
+    } else if (escolha == 'b' || escolha == 'B') {
+        personagem->carisma +=10;
+        printf("Voce recebeu 10 pontos de carisma");
+    } else if (escolha == 'c' || escolha == 'C') {
+        personagem->magia += 10;
+        printf("Voce recebeu 10 pontos de magia");
+    }
+    return 1;
+}
 void salvar(PERS *personagem){
     FILE *fp;
     fp = fopen("salvar.bin", "w");
@@ -406,7 +448,7 @@ int historia(PERS *personagem){
       return 0;
     }
     else if(cp == 2){
-      //  capitulo2(personagem);
+        capitulo2(personagem);
         return 1;
     }
     else if(cp == 3){
